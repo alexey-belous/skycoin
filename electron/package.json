@@ -1,7 +1,7 @@
 {
-    "name": "skycoin",
-    "productName": "Skycoin",
-    "author": "skycoin",
+    "name": "Apollo",
+    "productName": "Apollo",
+    "author": "Apollo",
     "main": "src/electron-main.js",
     "version": "0.22.0",
     "description": "skycoin wallet",

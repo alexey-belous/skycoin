@@ -26,7 +26,7 @@ let currentURL;
 app.commandLine.appendSwitch('host-rules', 'MAP * 127.0.0.1, EXCLUDE api.coinmarketcap.com, api.github.com');
 app.commandLine.appendSwitch('ssl-version-fallback-min', 'tls1.2');
 app.commandLine.appendSwitch('--no-proxy-server');
-app.setAsDefaultProtocolClient('skycoin');
+app.setAsDefaultProtocolClient('apollo');
 
 
 
@@ -54,15 +54,15 @@ function startSkycoin() {
   var exe = (() => {
         switch (process.platform) {
   case 'darwin':
-    return path.join(appPath, '../../Resources/app/skycoin');
+    return path.join(appPath, '../../Resources/app/apollo');
   case 'win32':
     // Use only the relative path on windows due to short path length
     // limits
-    return './resources/app/skycoin.exe';
+    return './resources/app/apollo.exe';
   case 'linux':
-    return path.join(path.dirname(appPath), './resources/app/skycoin');
+    return path.join(path.dirname(appPath), './resources/app/apollo');
   default:
-    return './resources/app/skycoin';
+    return './resources/app/apollo';
   }
 })()
 
@@ -71,7 +71,7 @@ function startSkycoin() {
     '-gui-dir=' + path.dirname(exe),
     '-color-log=false', // must be disabled for web interface detection
     '-logtofile=true',
-    '-download-peerlist=true',
+    // '-download-peerlist=true',
     '-enable-seed-api=true',
     '-enable-wallet-api=true'
     // will break
