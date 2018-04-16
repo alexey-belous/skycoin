@@ -52,7 +52,7 @@ var (
 	// GenesisTimestamp genesis block create unix time
 	GenesisTimestamp uint64 = 1523885521
 	// GenesisCoinVolume represents the coin capacity
-	GenesisCoinVolume uint64 = 100e6
+	GenesisCoinVolume uint64 = 100e12
 
 	// DefaultConnections the default trust node addresses
 	DefaultConnections = []string{
@@ -703,15 +703,14 @@ func Run(c *Config) {
 	}
 
 	/*
-	   time.Sleep(5)
-	   tx := InitTransaction()
-	   _ = tx
-	   err, _ = d.Visor.Visor.InjectTransaction(tx)
-	   if err != nil {
-	       log.Panic(err)
-	   }
+		time.Sleep(5)
+			tx := InitTransaction()
+			_ = tx
+			_, _, err = d.Visor.InjectTransaction(tx)
+			if err != nil {
+				log.Panic(err)
+			}
 	*/
-
 	/*
 	   //first transaction
 	   if c.RunMaster == true {
@@ -755,7 +754,7 @@ func main() {
 func InitTransaction() coin.Transaction {
 	var tx coin.Transaction
 
-	output := cipher.MustSHA256FromHex("043836eb6f29aaeb8b9bfce847e07c159c72b25ae17d291f32125e7f1912e2a0")
+	output := cipher.MustSHA256FromHex("7e343085e4a0fcfb5f475ac13ca914480255f913d807ae8be0e6d0c4ee2bda3f")
 	tx.PushInput(output)
 
 	addrs := visor.GetDistributionAddresses()
