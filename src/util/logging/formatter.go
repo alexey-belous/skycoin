@@ -238,7 +238,8 @@ func (f *TextFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 		}
 	}
 
-	b.WriteByte('\n')
+	// b.WriteByte([]byte("\n")[0])
+	b.WriteByte([]byte("\r\n")[0])
 	return b.Bytes(), nil
 }
 

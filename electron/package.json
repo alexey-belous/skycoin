@@ -4,10 +4,10 @@
     "author": "Apollo",
     "main": "src/electron-main.js",
     "version": "0.22.0",
-    "description": "skycoin wallet",
+    "description": "apollo wallet",
     "license": "MIT",
     "build": {
-        "appId": "org.skycoin.skycoin",
+        "appId": "org.apollo.apollo",
         "nsis": {
             "oneClick": false,
             "allowToChangeInstallationDirectory": true
