@@ -41,18 +41,18 @@ var (
 	logger = logging.MustGetLogger("main")
 
 	// GenesisSignatureStr hex string of genesis signature
-	GenesisSignatureStr = "ad1a43edc1b02ca31c358ab55a580ce2314043870606883a5e39bcd0e43c5fdc5ca7a34c459f3b9c8d1abf864d339c13da4b6c915a15ee8615cccd5e80b61bc801"
+	GenesisSignatureStr = "693a29b321408915b9bbc76199f0c5865a33d059a841e4f765429bdcc996f9ad0e7ca219a14fcb7047963f46718627e4c865c92adb962366bf1fc4383b6525f000"
 	// GenesisAddressStr genesis address string
-	GenesisAddressStr = "2ccsfuKpQ1EcqgQXPZyYZNW8qEDuKXZh9fj"
+	GenesisAddressStr = "2TjmKaqqiwYC1mRDafbRk2XiCCGtjF6bRig"
 	// BlockchainPubkeyStr pubic key string
-	BlockchainPubkeyStr = "024119d3c96e1cb4270fc332ff56b9fef66c4647c6f0b9a287821889e53eb235bc"
+	BlockchainPubkeyStr = "025ab77072b9aadc48f0917262cd760f26143b4256e2cd0fb6fcaaf2b76efde3e6"
 	// BlockchainSeckeyStr empty private key string
 	BlockchainSeckeyStr = ""
 
 	// GenesisTimestamp genesis block create unix time
-	GenesisTimestamp uint64 = 1426562704
+	GenesisTimestamp uint64 = 1523885521
 	// GenesisCoinVolume represents the coin capacity
-	GenesisCoinVolume uint64 = 100e12
+	GenesisCoinVolume uint64 = 100e6
 
 	// DefaultConnections the default trust node addresses
 	DefaultConnections = []string{
@@ -252,7 +252,7 @@ var devConfig = Config{
 	// public interface
 	Address: "",
 	//gnet uses this for TCP incoming and outgoing
-	Port: 6000,
+	Port: 8000,
 	// MaxOutgoingConnections is the maximum outgoing connections allowed.
 	MaxOutgoingConnections: 16,
 	DownloadPeerList:       false,
@@ -264,7 +264,7 @@ var devConfig = Config{
 	//AddressVersion: "test",
 	// Remote web interface
 	WebInterface:             true,
-	WebInterfacePort:         6420,
+	WebInterfacePort:         8620,
 	WebInterfaceAddr:         "127.0.0.1",
 	WebInterfaceCert:         "",
 	WebInterfaceKey:          "",
@@ -272,7 +272,7 @@ var devConfig = Config{
 	PrintWebInterfaceAddress: false,
 
 	RPCInterface:     true,
-	RPCInterfacePort: 6430,
+	RPCInterfacePort: 8630,
 	RPCInterfaceAddr: "127.0.0.1",
 	RPCThreadNum:     5,
 
