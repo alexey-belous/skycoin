@@ -5,7 +5,6 @@
       <div class="balance">
         <p *ngIf="highest && loading" class="coins"><span>{{ percentage | percent:'1.2-2' }}</span></p>
         <p *ngIf="!loading" class="coins"><span>{{ coins | number:'1.0-6' }}</span> apl</p>
-        <p *ngIf="!loading" class="dollars">{{ balance }}</p>
       </div>
     </div>
     <div class="hour-balance">

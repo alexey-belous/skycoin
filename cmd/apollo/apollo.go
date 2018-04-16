@@ -277,7 +277,7 @@ var devConfig = Config{
 
 	LaunchBrowser: false,
 	// Data directory holds app data -- defaults to ~/.skycoin
-	DataDirectory: filepath.Join(home, ".skycoin"),
+	DataDirectory: filepath.Join(home, ".apollo"),
 	// Web GUI static resources
 	GUIDirectory: "./src/gui/static/",
 	// Logging
