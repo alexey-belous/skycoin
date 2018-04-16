@@ -13,11 +13,11 @@ const cwd = require('process').cwd();
 // This adds refresh and devtools console keybindings
 // Page can refresh with cmd+r, ctrl+r, F5
 // Devtools can be toggled with cmd+alt+i, ctrl+shift+i, F12
-require('electron-debug')({enabled: true, showDevTools: false});
+require('electron-debug')({ enabled: true, showDevTools: false });
 require('electron-context-menu')({});
 
 
-global.eval = function() { throw new Error('bad!!'); }
+global.eval = function () { throw new Error('bad!!'); }
 
 const defaultURL = 'http://127.0.0.1:6420/';
 let currentURL;
@@ -52,26 +52,26 @@ function startSkycoin() {
   // Resolve skycoin binary location
   var appPath = app.getPath('exe');
   var exe = (() => {
-        switch (process.platform) {
-  case 'darwin':
-    return path.join(appPath, '../../Resources/app/apollo');
-  case 'win32':
-    // Use only the relative path on windows due to short path length
-    // limits
-    return './resources/app/apollo.exe';
-  case 'linux':
-    return path.join(path.dirname(appPath), './resources/app/apollo');
-  default:
-    return './resources/app/apollo';
-  }
-})()
+    switch (process.platform) {
+      case 'darwin':
+        return path.join(appPath, '../../Resources/app/apollo');
+      case 'win32':
+        // Use only the relative path on windows due to short path length
+        // limits
+        return './resources/app/apollo.exe';
+      case 'linux':
+        return path.join(path.dirname(appPath), './resources/app/apollo');
+      default:
+        return './resources/app/apollo';
+    }
+  })()
 
   var args = [
     '-launch-browser=false',
     '-gui-dir=' + path.dirname(exe),
     '-color-log=false', // must be disabled for web interface detection
     '-logtofile=true',
-    // '-download-peerlist=true',
+    '-download-peerlist=true',
     '-enable-seed-api=true',
     '-enable-wallet-api=true'
     // will break
@@ -80,13 +80,14 @@ function startSkycoin() {
   ]
   skycoin = childProcess.spawn(exe, args);
 
+  console.log('node: ', skycoin);
   skycoin.on('error', (e) => {
     dialog.showErrorBox('Failed to start skycoin', e.toString());
     app.quit();
   });
 
   skycoin.stdout.on('data', (data) => {
-    console.log(data.toString());
+    console.log('received data', data.toString());
     // Scan for the web URL string
     if (currentURL) {
       return
@@ -135,7 +136,7 @@ function createWindow(url) {
   win = new BrowserWindow({
     width: 1200,
     height: 900,
-    title: 'Skycoin',
+    title: 'Apollo',
     icon: iconPath,
     nodeIntegration: false,
     webPreferences: {
@@ -152,7 +153,7 @@ function createWindow(url) {
     console.log('Cleared the caching of the skycoin wallet.');
   });
 
-  ses.clearStorageData([],function(){
+  ses.clearStorageData([], function () {
     console.log('Cleared the stored cached data');
   });
 
@@ -169,7 +170,7 @@ function createWindow(url) {
     win = null;
   });
 
-  win.webContents.on('will-navigate', function(e, url) {
+  win.webContents.on('will-navigate', function (e, url) {
     e.preventDefault();
     require('electron').shell.openExternal(url);
   });
@@ -180,7 +181,7 @@ function createWindow(url) {
     submenu: [
       { label: "About Skycoin", selector: "orderFrontStandardAboutPanel:" },
       { type: "separator" },
-      { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); } }
+      { label: "Quit", accelerator: "Command+Q", click: function () { app.quit(); } }
     ]
   }, {
     label: "Edit",
@@ -200,15 +201,15 @@ function createWindow(url) {
 
 // Enforce single instance
 const alreadyRunning = app.makeSingleInstance((commandLine, workingDirectory) => {
-      // Someone tried to run a second instance, we should focus our window.
-      if (win) {
-        if (win.isMinimized()) {
-          win.restore();
-        }
-        win.focus();
-      } else {
-        createWindow(currentURL || defaultURL);
-}
+  // Someone tried to run a second instance, we should focus our window.
+  if (win) {
+    if (win.isMinimized()) {
+      win.restore();
+    }
+    win.focus();
+  } else {
+    createWindow(currentURL || defaultURL);
+  }
 });
 
 if (alreadyRunning) {
@@ -230,16 +231,16 @@ app.on('window-all-closed', () => {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-  app.quit();
-}
+    app.quit();
+  }
 });
 
 app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (win === null) {
-  createWindow();
-}
+    createWindow();
+  }
 });
 
 app.on('will-quit', () => {
