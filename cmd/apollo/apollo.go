@@ -41,7 +41,7 @@ var (
 	logger = logging.MustGetLogger("main")
 
 	// GenesisSignatureStr hex string of genesis signature
-	GenesisSignatureStr = "693a29b321408915b9bbc76199f0c5865a33d059a841e4f765429bdcc996f9ad0e7ca219a14fcb7047963f46718627e4c865c92adb962366bf1fc4383b6525f000"
+	GenesisSignatureStr = "65c972d5ed4414d5a98e9103e7ede12a0bd35470650238720b54415e3a4da786615fc84391a9b9f17324f3be6e307aa7fdbd972e281eed479eee3eee7c59631f01"
 	// GenesisAddressStr genesis address string
 	GenesisAddressStr = "2TjmKaqqiwYC1mRDafbRk2XiCCGtjF6bRig"
 	// BlockchainPubkeyStr pubic key string
@@ -52,7 +52,7 @@ var (
 	// GenesisTimestamp genesis block create unix time
 	GenesisTimestamp uint64 = 1523885521
 	// GenesisCoinVolume represents the coin capacity
-	GenesisCoinVolume uint64 = 100e6
+	GenesisCoinVolume uint64 = 100e12
 
 	// DefaultConnections the default trust node addresses
 	DefaultConnections = []string{
@@ -703,15 +703,14 @@ func Run(c *Config) {
 	}
 
 	/*
-	   time.Sleep(5)
-	   tx := InitTransaction()
-	   _ = tx
-	   err, _ = d.Visor.Visor.InjectTransaction(tx)
-	   if err != nil {
-	       log.Panic(err)
-	   }
+		time.Sleep(5)
+			tx := InitTransaction()
+			_ = tx
+			_, _, err = d.Visor.InjectTransaction(tx)
+			if err != nil {
+				log.Panic(err)
+			}
 	*/
-
 	/*
 	   //first transaction
 	   if c.RunMaster == true {
@@ -755,7 +754,7 @@ func main() {
 func InitTransaction() coin.Transaction {
 	var tx coin.Transaction
 
-	output := cipher.MustSHA256FromHex("043836eb6f29aaeb8b9bfce847e07c159c72b25ae17d291f32125e7f1912e2a0")
+	output := cipher.MustSHA256FromHex("8034d656dede22721b9d0e7aaa970288b9636e3593011be5e0b5b7cf9936fede")
 	tx.PushInput(output)
 
 	addrs := visor.GetDistributionAddresses()
