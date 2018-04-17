@@ -1,6 +1,6 @@
 {
-    "name": "Apollo",
-    "productName": "Apollo",
+    "name": "apollo",
+    "productName": "apollo",
     "author": "Apollo",
     "main": "src/electron-main.js",
     "version": "0.22.0",
@@ -56,7 +56,7 @@
                 ]
             },
             {
-                "from": "./skycoin/",
+                "from": "./apollo/",
                 "to": "./app/dist/"
             }
         ],
