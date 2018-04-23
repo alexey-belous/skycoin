@@ -107,7 +107,7 @@ USAGE:
    skycoin-cli [global options] command [command options] [arguments...]
 
 VERSION:
-   0.22.0
+   0.22.1
 
 COMMANDS:
      addPrivateKey         Add a private key to specific wallet
@@ -1877,10 +1877,10 @@ $ skycoin-cli version
  <summary>View Output</summary>
 
 ```
-skycoin:0.22.0
-cli:0.22.0
-rpc:0.22.0
-wallet:0.22.0
+skycoin:0.22.1
+cli:0.22.1
+rpc:0.22.1
+wallet:0.22.1
 ```
 </details>
 
@@ -1894,10 +1894,10 @@ $ skycoin-cli version --json
 
 ```json
 {
- "skycoin": "0.22.0",
- "cli": "0.22.0",
- "rpc": "0.22.0",
- "wallet": "0.22.0"
+ "skycoin": "0.22.1",
+ "cli": "0.22.1",
+ "rpc": "0.22.1",
+ "wallet": "0.22.1"
 }
 ```
 </details>
