@@ -10,7 +10,7 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "app/current-skycoin.json"
+        "app/current-apollo.json"
       ],
       "index": "index.html",
       "main": "main.ts",

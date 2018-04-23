@@ -1,6 +1,6 @@
-![skycoin logo](https://user-images.githubusercontent.com/26845312/32426705-d95cb988-c281-11e7-9463-a3fce8076a72.png)
+![skycoin logo](./apollo.png)
 
-# Skycoin
+# Apollo
 
 [![Build Status](https://travis-ci.org/skycoin/skycoin.svg)](https://travis-ci.org/skycoin/skycoin)
 [![GoDoc](https://godoc.org/github.com/skycoin/skycoin?status.svg)](https://godoc.org/github.com/skycoin/skycoin)
@@ -38,6 +38,7 @@ Skycoin is a small part of OP Redecentralize and OP Darknet Plan.
     - [Skycoin command line interface](#skycoin-command-line-interface)
 - [Integrating Skycoin with your application](#integrating-skycoin-with-your-application)
 - [Contributing a node to the network](#contributing-a-node-to-the-network)
+- [URI Specification](#uri-specification)
 - [Development](#development)
     - [Modules](#modules)
     - [Client libraries](#client-libraries)
@@ -54,6 +55,7 @@ Skycoin is a small part of OP Redecentralize and OP Darknet Plan.
     - [Releases](#releases)
         - [Pre-release testing](#pre-release-testing)
         - [Creating release builds](#creating-release-builds)
+        - [Release signing](#release-signing)
 
 <!-- /MarkdownTOC -->
 
@@ -96,9 +98,11 @@ make run-help
 
 ### Run Skycoin with options
 
+Example:
+
 ```sh
 cd $GOPATH/src/github.com/skycoin/skycoin
-make ARGS="--launch-browser=false" run
+make ARGS="--launch-browser=false -data-dir=/custom/path" run
 ```
 
 ### Docker image
@@ -114,6 +118,10 @@ $ docker run -ti --rm \
     -p 6430:6430 \
     skycoin/skycoin
 ```
+
+With this image, the skycoin daemon will run as root by default inside the
+container. When you mount a volume in /data, the container will detect for the
+folder's owner UID and will create a skycoin user with the same UID.
 
 Access the dashboard: [http://localhost:6420](http://localhost:6420).
 
@@ -145,6 +153,17 @@ and used to seed client with peers.
 
 *Note*: Do not add Skywire nodes to `peers.txt`.
 Only add Skycoin nodes with high uptime and a static IP address (such as a Skycoin node hosted on a VPS).
+
+## URI Specification
+
+Skycoin URIs obey the same rules as specified in Bitcoin's [BIP21](https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki).
+They use the same fields, except with the addition of an optional `hours` parameter, specifying the coin hours.
+
+Example Skycoin URIs:
+
+* `skycoin:2hYbwYudg34AjkJJCRVRcMeqSWHUixjkfwY`
+* `skycoin:2hYbwYudg34AjkJJCRVRcMeqSWHUixjkfwY?amount=123.456&hours=70`
+* `skycoin:2hYbwYudg34AjkJJCRVRcMeqSWHUixjkfwY?amount=123.456&hours=70&label=friend&message=Birthday%20Gift`
 
 ## Development
 
@@ -350,7 +369,7 @@ Instructions for doing this:
 5. Follow the steps in [pre-release testing](#pre-release-testing)
 6. Make a PR merging `develop` into `master`
 7. Review the PR and merge it
-8. Tag the master branch with the version number. Version tags start with `v`, e.g. `v0.20.0`.
+8. Tag the master branch with the version number. Version tags start with `v`, e.g. `v0.20.0`. Sign the tag. Example: `git tag -as v0.20.0 $COMMIT_ID`.
 9. Make sure that the client runs properly from the `master` branch
 10. Create the release builds from the `master` branch (see [Create Release builds](electron/README.md))
 
@@ -370,9 +389,34 @@ Performs these actions before releasing:
     * Load a test wallet with nonzero balance from seed to confirm wallet loading works
     * Send coins to another wallet to confirm spending works
     * Restart the client, confirm that it reloads properly
-* `./run.sh -disable-wallet-api` and check that the wallet does not load, and `/wallets` and `/spend` fail
+* `./run.sh -enable-wallet-api=false` and check that the wallet does not load, and `/wallets` and `/spend` fail
 
 #### Creating release builds
 
 [Create Release builds](electron/README.md).
 
+#### Release signing
+
+Releases are signed with this PGP key:
+
+`0x5801631BD27C7874`
+
+The fingerprint for this key is:
+
+```
+pub   ed25519 2017-09-01 [SC] [expires: 2023-03-18]
+      10A7 22B7 6F2F FE7B D238  0222 5801 631B D27C 7874
+uid                      GZ-C SKYCOIN <token@protonmail.com>
+sub   cv25519 2017-09-01 [E] [expires: 2023-03-18]
+```
+
+Keybase.io account: https://keybase.io/gzc
+
+Follow the [Tor Project's instructions for verifying signatures](https://www.torproject.org/docs/verifying-signatures.html.en).
+
+If you can't or don't want to import the keys from a keyserver, the signing key is available in the repo: [gz-c.asc](gz-c.asc).
+
+Releases and their signatures can be found on the [releases page](https://github.com/skycoin/skycoin/releases).
+
+Instructions for generating a PGP key, publishing it, signing the tags and binaries:
+https://gist.github.com/gz-c/de3f9c43343b2f1a27c640fe529b067c
