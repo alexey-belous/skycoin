@@ -71,8 +71,7 @@ function startSkycoin() {
     '-gui-dir=' + path.dirname(exe),
     '-color-log=false', // must be disabled for web interface detection
     '-logtofile=true',
-    // TODO: Uncomment following line when list of peers is available.
-    // '-download-peerlist=true',
+    '-download-peerlist=true',
     '-enable-seed-api=true',
     '-enable-wallet-api=true'
     // will break
