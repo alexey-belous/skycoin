@@ -255,7 +255,7 @@ var devConfig = Config{
 	Port: 8300,
 	// MaxOutgoingConnections is the maximum outgoing connections allowed.
 	MaxOutgoingConnections: 16,
-	DownloadPeerList:       false,
+	DownloadPeerList:       true,
 	PeerListURL:            "https://downloads.applochain.io/blockchain/peers.txt",
 	// How often to make outgoing connections, in seconds
 	OutgoingConnectionsRate: time.Second * 5,
