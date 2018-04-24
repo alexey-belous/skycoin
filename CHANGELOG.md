@@ -37,7 +37,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Remove dependency [op/go-logging](https://github.com/op/go-logging)
 
-## [0.22.0] - 2018-03-20
+## [0.22.1] - 2018-03-20
 
 ### Added
 
@@ -223,7 +223,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - #350 Wallet name always 'undefined' after loading wallet from seed
 
 [Unreleased]: https://github.com/skycoin/skycoin/compare/master...develop
-[0.22.0]: https://github.com/skycoin/skycoin/compare/v0.21.1...v0.22.0
+[0.22.1]: https://github.com/skycoin/skycoin/compare/v0.21.1...v0.22.1
 [0.21.1]: https://github.com/skycoin/skycoin/compare/v0.21.0...v0.21.1
 [0.21.0]: https://github.com/skycoin/skycoin/compare/v0.20.4...v0.21.0
 [0.20.4]: https://github.com/skycoin/skycoin/compare/v0.20.3...v0.20.4
