@@ -3,7 +3,7 @@
     "productName": "apollo",
     "author": "Apollo",
     "main": "src/electron-main.js",
-    "version": "0.22.0",
+    "version": "0.22.1",
     "description": "apollo wallet",
     "license": "MIT",
     "build": {
