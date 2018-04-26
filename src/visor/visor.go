@@ -632,7 +632,7 @@ func (vs *Visor) GetAddressTxns(a cipher.Address) ([]Transaction, error) {
 	for _, ux := range uxs {
 		tx, ok := vs.Unconfirmed.Get(ux.Body.SrcTransaction)
 		if !ok {
-			logger.Critical("Unconfirmed unspent missing unconfirmed txn")
+			logger.Critical().Error("Unconfirmed unspent missing unconfirmed txn")
 			continue
 		}
 		txns = append(txns, Transaction{
@@ -849,7 +849,7 @@ func (vs *Visor) getTransactionsOfAddrs(addrs []cipher.Address) (map[cipher.Addr
 		for _, ux := range uxs {
 			tx, ok := vs.Unconfirmed.Get(ux.Body.SrcTransaction)
 			if !ok {
-				logger.Critical("Unconfirmed unspent missing unconfirmed txn")
+				logger.Critical().Error("Unconfirmed unspent missing unconfirmed txn")
 				continue
 			}
 			txns = append(txns, Transaction{
@@ -1036,9 +1036,9 @@ func (vs Visor) GetAddrUxOuts(address cipher.Address) ([]*historydb.UxOut, error
 	return vs.history.GetAddrUxOuts(address)
 }
 
-// ScanAheadWalletAddresses scans ahead N addresses in a wallet, looking for a non-empty balance
-func (vs Visor) ScanAheadWalletAddresses(wltName string, password []byte, scanN uint64) (*wallet.Wallet, error) {
-	return vs.Wallets.ScanAheadWalletAddresses(wltName, password, scanN, vs)
+// CreateWallet creates wallet and scans ahead N addresses to look for a none-empty balance
+func (vs *Visor) CreateWallet(wltName string, opts wallet.Options) (*wallet.Wallet, error) {
+	return vs.Wallets.CreateWallet(wltName, opts, vs)
 }
 
 // GetBalanceOfAddrs returns balance pairs of given addreses
