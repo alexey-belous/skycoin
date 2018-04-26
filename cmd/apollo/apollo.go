@@ -756,6 +756,7 @@ func Run(c *Config) {
 				log.Panic(err)
 			}
 	*/
+
 	/*
 	   //first transaction
 	   if c.RunMaster == true {
