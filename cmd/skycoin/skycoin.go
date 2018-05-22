@@ -45,16 +45,16 @@ var (
 	logger = logging.MustGetLogger("main")
 
 	// GenesisSignatureStr hex string of genesis signature
-	GenesisSignatureStr = "ed9bd7a31fe30b9e2d53b35154233dfdf48aaaceb694a07142f84cdf4f5263d21b723f631817ae1c1f735bea13f0ff2a816e24a53ccb92afae685fdfc06724de01"
+	GenesisSignatureStr = "47c416bfd9199dbe616abcaede20293355202528fc51c0bf4d4ef8ce2279023e52fdeceab8115198fc67a9070465c30f5a7f158abb3a82c77a65b9cf03d0a9f101"
 	// GenesisAddressStr genesis address string
 	GenesisAddressStr = "2cZqy5dHgxm2W9yBL3hg5XRAmVoKupUDWD2"
 	// BlockchainPubkeyStr pubic key string
 	BlockchainPubkeyStr = "039ffd8777195ed08f4abdc3151d5a941cbe5630f5c92c76da366238d26eed93b6"
 	// BlockchainSeckeyStr empty private key string
-	BlockchainSeckeyStr = "d5f9f2cef3a5ff9a21eccf5815b1d8dd683a5646bf94bf5ad9b305554348a1db"
+	BlockchainSeckeyStr = ""
 
 	// GenesisTimestamp genesis block create unix time
-	GenesisTimestamp uint64 = 1426562704
+	GenesisTimestamp uint64 = 1526991033
 	// GenesisCoinVolume represents the coin capacity
 	GenesisCoinVolume uint64 = 100e12
 
@@ -754,21 +754,19 @@ func Run(c *Config) {
 	// 	log.Panic(err)
 	// }
 
-	/*
-	   //first transaction
-	   if c.RunMaster == true {
-	       go func() {
-	           for d.Visor.Visor.Blockchain.Head().Seq() < 2 {
-	               time.Sleep(5)
-	               tx := InitTransaction()
-	               err, _ := d.Visor.Visor.InjectTransaction(tx)
-	               if err != nil {
-	                   //log.Panic(err)
-	               }
-	           }
-	       }()
-	   }
-	*/
+	//first transaction
+	// if c.RunMaster == true {
+	// 	go func() {
+	// 		for d.Visor.HeadBkSeq() < 2 {
+	// 			time.Sleep(5)
+	// 			tx := InitTransaction()
+	// 			_, _, err = d.Visor.InjectTransaction(tx)
+	// 			if err != nil {
+	// 				//log.Panic(err)
+	// 			}
+	// 		}
+	// 	}()
+	// }
 
 	select {
 	case <-quit:
@@ -804,7 +802,7 @@ func main() {
 func InitTransaction() coin.Transaction {
 	var tx coin.Transaction
 
-	output := cipher.MustSHA256FromHex("043836eb6f29aaeb8b9bfce847e07c159c72b25ae17d291f32125e7f1912e2a0")
+	output := cipher.MustSHA256FromHex("6392662ed9cdcc1f6a4d17d1bead834ba1daa79bc15bf81fec3f1fa9b3ab0e6b")
 	tx.PushInput(output)
 
 	addrs := visor.GetDistributionAddresses()
@@ -830,7 +828,7 @@ func InitTransaction() coin.Transaction {
 	*/
 
 	txs := make([]cipher.Sig, 1)
-	sig := "ed9bd7a31fe30b9e2d53b35154233dfdf48aaaceb694a07142f84cdf4f5263d21b723f631817ae1c1f735bea13f0ff2a816e24a53ccb92afae685fdfc06724de01"
+	sig := "47c416bfd9199dbe616abcaede20293355202528fc51c0bf4d4ef8ce2279023e52fdeceab8115198fc67a9070465c30f5a7f158abb3a82c77a65b9cf03d0a9f101"
 	txs[0] = cipher.MustSigFromHex(sig)
 	tx.Sigs = txs
 
